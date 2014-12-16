@@ -124,7 +124,7 @@ DeleteAccount.prototype.postDelete = function(req, res, next) {
   }
 
   // get user from db
-  adapter.find('name', name, function(err, user) {
+  adapter.findUser('name', name, function(err, user) {
     if (err) return next(err);
 
     // no need to check if user exists in db since we are already checking against current session
@@ -154,7 +154,7 @@ DeleteAccount.prototype.postDelete = function(req, res, next) {
       }
 
       // delete user from db :(
-      adapter.remove(name, function(err) {
+      adapter.removeUser(name, function(err) {
         if (err) return next(err);
 
         // kill session
